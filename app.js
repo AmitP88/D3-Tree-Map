@@ -31,6 +31,7 @@ fetch('https://cdn.rawgit.com/freeCodeCamp/testable-projects-fcc/a80ce8f9/src/da
 
             console.log(rootNode);
 
+            // Create g elements for holding rect labels
             let nodes = d3.select('svg g')
                           .selectAll('g')
                           .data(rootNode.descendants())
@@ -38,17 +39,19 @@ fetch('https://cdn.rawgit.com/freeCodeCamp/testable-projects-fcc/a80ce8f9/src/da
                           .append('g')
                           .attr('transform', (d) => 'translate(' + [d.x0, d.y0] + ')')
 
+                // Create rect elements within g elements to hold text elements
                 nodes
                     .append('rect')
                     .attr('width', (d) => d.x1 - d.x0)
                     .attr('height', (d) => d.y1 - d.y0)
-
+                // Create text elements that render the data names as labels to each rect
                 nodes
                     .append('text')
                     .attr('dx', 4)
                     .attr('dy', 14)
                     .text((d) => d.data.name)
                     .attr("class", "node-text");
+
 
         });
 }
