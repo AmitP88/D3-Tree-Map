@@ -2,4 +2,8 @@ rect {
     fill: cadetblue;
     opacity: 0.3;
     stroke: white;
-  }
+}
+
+.node-text {
+    font-size: 12px;
+}

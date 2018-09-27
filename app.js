@@ -9,7 +9,7 @@ fetch('https://cdn.rawgit.com/freeCodeCamp/testable-projects-fcc/a80ce8f9/src/da
 
             // Created treemap layout using D3's treemap method
             const treemapLayout = d3.treemap()
-                                    .size([400, 200])
+                                    .size([1000, 800])
                                     .paddingOuter(10);
             
             // Run sum method on the hierarchy - this traverses the tree and sets .value on each node to the sum of its children
@@ -26,9 +26,29 @@ fetch('https://cdn.rawgit.com/freeCodeCamp/testable-projects-fcc/a80ce8f9/src/da
               .attr('x', (d) => d.x0)
               .attr('y', (d) => d.y0)
               .attr('width', (d) => d.x1 - d.x0)
-              .attr('height', (d) => d.y1 - d.y0);
+              .attr('height', (d) => d.y1 - d.y0)
+              .attr("class", "tile");
 
             console.log(rootNode);
+
+            let nodes = d3.select('svg g')
+                          .selectAll('g')
+                          .data(rootNode.descendants())
+                          .enter()
+                          .append('g')
+                          .attr('transform', (d) => 'translate(' + [d.x0, d.y0] + ')')
+
+                nodes
+                    .append('rect')
+                    .attr('width', (d) => d.x1 - d.x0)
+                    .attr('height', (d) => d.y1 - d.y0)
+
+                nodes
+                    .append('text')
+                    .attr('dx', 4)
+                    .attr('dy', 14)
+                    .text((d) => d.data.name)
+                    .attr("class", "node-text");
 
         });
 }
