@@ -37,9 +37,64 @@ fetch('https://cdn.rawgit.com/freeCodeCamp/testable-projects-fcc/a80ce8f9/src/da
               .attr('y', (d) => d.y0)
               .attr('width', (d) => d.x1 - d.x0)
               .attr('height', (d) => d.y1 - d.y0)
-              .attr("class", "tile");
-
-            console.log(rootNode);
+              .attr("class", "tile")
+              .style("fill", (d) => {
+                  switch(d.data.category){
+                      case 'Wii':
+                        return 'orange';
+                        break;
+                      case 'NES':
+                        return 'purple';
+                        break;
+                      case 'X360':
+                        return 'lightgreen';
+                        break;
+                      case 'PS3':
+                        return 'gray';
+                        break;
+                      case 'GB':
+                        return 'pink';
+                        break;
+                      case 'DS':
+                        return 'red';
+                        break;
+                      case 'PS2':
+                        return 'navy';
+                        break;
+                      case 'PS4':
+                        return 'blue';
+                        break;
+                      case '3DS':
+                        return 'darkorange';
+                        break;
+                      case 'SNES':
+                        return 'violet';
+                        break;
+                      case 'GBA':
+                        return 'gold';
+                        break;
+                      case 'N64':
+                        return 'aquamarine';
+                        break;
+                      case 'PS':
+                        return 'aqua';
+                        break;
+                      case 'XB':
+                        return 'green';
+                        break;
+                      case 'PSP':
+                        return 'darkred';
+                        break;
+                      case 'PC':
+                        return 'brown';
+                        break;
+                      case 'XOne':
+                        return 'darkgray';
+                        break;
+                    default:
+                        return 'none';
+                  }
+              })
 
             // Create g elements for holding rect labels
             let nodes = d3.select('svg g')
@@ -61,6 +116,14 @@ fetch('https://cdn.rawgit.com/freeCodeCamp/testable-projects-fcc/a80ce8f9/src/da
                     .attr('dy', 14)
                     .text((d) => d.data.name)
                     .attr("class", "node-text");
+
+
+
+
+
+
+
+
 
 
         });
