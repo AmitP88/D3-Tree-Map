@@ -18,7 +18,17 @@ fetch('https://cdn.rawgit.com/freeCodeCamp/testable-projects-fcc/a80ce8f9/src/da
             // call treemapLayout and pass in hierachy object
             treemapLayout(rootNode);
 
-            d3.select('svg g')
+            // Define width and height dimensions for SVG element
+            const width = 1000;
+            const height = 1000;
+
+            // Create SVG element and append to container element. Pass in height and width variables as attributes
+            const svg = d3.select(".container")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+            svg.append('g')
               .selectAll('rect')
               .data(rootNode.descendants())
               .enter()
