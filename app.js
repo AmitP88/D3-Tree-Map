@@ -44,8 +44,21 @@ fetch('https://cdn.rawgit.com/freeCodeCamp/testable-projects-fcc/a80ce8f9/src/da
               .attr('height', (d) => d.y1 - d.y0)
               .attr("class", "tile")
               .attr("data-name", (d) => d.data.name)
-              .attr("data-category", (d) => d.data.category)
-              .attr("data-value", (d) => d.data.value)
+              .attr("data-category", (d) => {
+                    if(d.data.category) {
+                        return d.data.category;   
+                    } else {
+                        return "none";
+                    }
+                    
+              })
+              .attr("data-value", (d) => {
+                    if(d.data.value) {
+                        return d.data.value;
+                    } else {
+                        return "none";
+                    }
+              })
               // Color code each rect element according to category
               .style("fill", (d) => {
                   switch(d.data.category){
