@@ -35,7 +35,7 @@ fetch('https://cdn.rawgit.com/freeCodeCamp/testable-projects-fcc/a80ce8f9/src/da
 
             svg.append('g')
               .selectAll('rect')
-              .data(rootNode.descendants())
+              .data(rootNode.leaves())
               .enter()
               .append('rect')
               .attr('x', (d) => d.x0)
