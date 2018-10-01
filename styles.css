@@ -7,3 +7,24 @@ rect {
 .node-text {
     font-size: 12px;
 }
+
+#tooltip {
+    width: 140px;
+    height: 100px;
+    position: absolute;
+    text-align: center;
+    padding-left: 0.5%;
+    padding-right: 1%;
+    padding-top: 4%;
+    font-size: 12px;
+    font-family: "Lato", sans-serif;
+    font-weight: bold;
+    background: lightseagreen;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  
+  span {
+    display: inline-block;
+    width: 150px;
+  }

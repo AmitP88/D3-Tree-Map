@@ -22,6 +22,11 @@ fetch('https://cdn.rawgit.com/freeCodeCamp/testable-projects-fcc/a80ce8f9/src/da
             const width = 1000;
             const height = 800;
 
+            // Create tooltip
+            const tooltip = d3.select(".container")
+                              .append("div")
+                              .attr("id", "tooltip");
+
             // Create SVG element and append to container element. Pass in height and width variables as attributes
             const svg = d3.select(".container")
             .append("svg")
@@ -99,6 +104,26 @@ fetch('https://cdn.rawgit.com/freeCodeCamp/testable-projects-fcc/a80ce8f9/src/da
                         return 'none';
                   }
               })
+              // Shows tooltip when user hovers over a rect element
+            .on("mouseover", (d) => {
+                    tooltip.transition()
+                        .duration(200)
+                        .style("opacity", .9);
+                    tooltip.html(() => {
+                        return "<span>" + d.data.name + "</span>" +
+                               "<span>" + d.data.category + "</span>" +
+                               "<span>"+ d.data.value + "</span>"; 
+                    })
+                        .attr("data-value", () => d.data.value)
+                        .style("left", d3.event.pageX + "px")
+                        .style("top", (d3.event.pageY - 65) + "px")
+                        .attr("id", "tooltip")
+                })
+                .on("mouseout", (e) => {
+                tooltip.transition()
+                        .duration(500)
+                        .style("opacity", 0);
+                });
 
             // Create g elements for holding rect labels
             let nodes = d3.select('svg g')
